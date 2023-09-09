@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import UserInputField from "./UserInputField";
 import Button from "../Button/Button";
+import styles from "./UserInput.module.css";
 
 function UserInput(props) {
-  const [userForm, setUserForm] = useState({
+  const initialState = {
     username: "",
     age: "",
-  });
-
+  };
+  const [userForm, setUserForm] = useState(initialState);
+  function clearForm() {
+    setUserForm(initialState);
+  }
   function inputChangeHandler(event) {
     const { name, value } = event.target;
     console.log(name, value);
@@ -26,14 +30,16 @@ function UserInput(props) {
       props.onError("Age can't be negative");
     } else {
       props.onNoError();
+      props.onSubmit(userForm);
+      clearForm();
     }
   }
   return (
-    <form onSubmit={submitHandler}>
+    <form className={styles.input} onSubmit={submitHandler}>
       <UserInputField
         name="username"
         label="Username"
-        value={userForm.name}
+        value={userForm.username}
         onChangeHandler={inputChangeHandler}
         type="text"
       ></UserInputField>
@@ -44,7 +50,7 @@ function UserInput(props) {
         onChangeHandler={inputChangeHandler}
         type="number"
       ></UserInputField>
-      <Button></Button>
+      <Button label="Submit Form" type="submit"></Button>
     </form>
   );
 }

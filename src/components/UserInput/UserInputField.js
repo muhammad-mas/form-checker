@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
+import styles from "./UserInputField.module.css";
 function UserInputField(props) {
   return (
-    <div>
+    <div className={styles.input}>
       <label htmlFor={props.name}>{props.label}</label>
       <input
         type={props.type}
