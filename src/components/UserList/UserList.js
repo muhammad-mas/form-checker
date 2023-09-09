@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./UserList.module.css";
+import Card from "../Card/Card";
 const UserList = (props) => {
   return (
-    <div className={styles.users}>
+    <Card classes={styles.users}>
       <ul>
         {props.users.map((user, index) => {
           return (
@@ -12,7 +13,7 @@ const UserList = (props) => {
           );
         })}
       </ul>
-    </div>
+    </Card>
   );
 };
 export default UserList;
